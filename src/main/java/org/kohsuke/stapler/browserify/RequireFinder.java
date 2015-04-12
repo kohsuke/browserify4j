@@ -18,7 +18,7 @@ import java.util.List;
  *
  * @author Kohsuke Kawaguchi
  */
-public class RequireFinder {
+class RequireFinder {
     private final CompilerEnvirons env;
 
     public RequireFinder() {
