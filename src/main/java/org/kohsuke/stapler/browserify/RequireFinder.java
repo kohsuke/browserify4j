@@ -28,6 +28,10 @@ public class RequireFinder {
         factory = new IRFactory(env);
     }
 
+    public List<Require> discover(Source src) throws IOException {
+        return discover(factory.parse(src.load(), src.getSourceFileName(), 1));
+    }
+
     public List<Require> discover(Reader src, String sourceFileName, int line) throws IOException {
         return discover(factory.parse(src, sourceFileName, line));
     }

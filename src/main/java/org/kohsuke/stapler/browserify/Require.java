@@ -7,7 +7,7 @@ import org.mozilla.javascript.ast.FunctionCall;
  *
  * @author Kohsuke Kawaguchi
  */
-public class Require {
+final class Require {
     /**
      * AST Node of the require('...') call
      */
