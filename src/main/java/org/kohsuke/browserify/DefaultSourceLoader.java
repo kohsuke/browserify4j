@@ -1,4 +1,4 @@
-package org.kohsuke.stapler.browserify;
+package org.kohsuke.browserify;
 
 import java.net.URL;
 

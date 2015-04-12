@@ -1,4 +1,4 @@
-package org.kohsuke.stapler.browserify;
+package org.kohsuke.browserify;
 
 /**
  * Indicates that a module was 'require'-d but it was not found.

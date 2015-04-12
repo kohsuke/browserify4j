@@ -1,4 +1,4 @@
-package org.kohsuke.stapler.browserify;
+package org.kohsuke.browserify;
 
 import org.junit.Assert;
 import org.junit.Test;

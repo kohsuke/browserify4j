@@ -1,4 +1,4 @@
-package org.kohsuke.stapler.browserify;
+package org.kohsuke.browserify;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -17,7 +17,7 @@ public class BrowserifyTest extends Assert {
 
     @Test
     public void math() throws Exception {
-        Object o = parse("require('org/kohsuke/stapler/browserify/math/math').value",
+        Object o = parse("require('org/kohsuke/browserify/math/math').value",
                 "math/math");
         assertEquals(6, ((Number)o).intValue());
 
@@ -25,7 +25,7 @@ public class BrowserifyTest extends Assert {
 
     private Object parse(String main, String... paths) throws Exception {
         for (String path : paths) {
-            browserify.require(loader.load("org/kohsuke/stapler/browserify/"+path));
+            browserify.require(loader.load("org/kohsuke/browserify/"+path));
         }
 
         StringWriter sw = new StringWriter();
