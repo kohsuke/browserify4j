@@ -16,7 +16,11 @@ import java.util.List;
 public final class ModuleName {
     private final String moduleName;
 
-    public ModuleName(String moduleName) {
+    public static ModuleName from(String n) {
+        return STEM.resolve(n);
+
+    }
+    private ModuleName(String moduleName) {
         this.moduleName = moduleName;
     }
 
@@ -25,13 +29,15 @@ public final class ModuleName {
      *
      */
     ModuleName resolve(String path) {
-        if (!path.startsWith(".")) {
+        List<String> tokens = new ArrayList<String>();
+
+        if (path.startsWith(".")) {
+            tokens.addAll(tokenize(moduleName));
+            tokens.add("..");
+        } else {
             // in common JS module, names like 'foo' is considered absolute, unlike file system
-            return new ModuleName(path);
         }
 
-        List<String> tokens = new ArrayList<String>();
-        tokens.addAll(tokenize(moduleName));
         tokens.addAll(tokenize(path));
 
         for (int i=0; i<tokens.size(); ) {
@@ -45,6 +51,7 @@ public final class ModuleName {
                 }
                 tokens.remove(i);  // remove this token and the previous token that cancel out each other
                 tokens.remove(i-1);
+                i--;
             } else {
                 i++;
             }
@@ -76,4 +83,6 @@ public final class ModuleName {
     public int hashCode() {
         return moduleName.hashCode();
     }
+
+    private static final ModuleName STEM = new ModuleName("ROOT");
 }

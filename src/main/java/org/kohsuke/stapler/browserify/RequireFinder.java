@@ -19,21 +19,20 @@ import java.util.List;
  * @author Kohsuke Kawaguchi
  */
 public class RequireFinder {
-    private final IRFactory factory;
+    private final CompilerEnvirons env;
 
     public RequireFinder() {
-        CompilerEnvirons env = new CompilerEnvirons();
+        env = new CompilerEnvirons();
        	env.setRecoverFromErrors(true);
        	env.setGenerateDebugInfo(true);
-        factory = new IRFactory(env);
     }
 
     public List<Require> discover(Source src) throws IOException {
-        return discover(factory.parse(src.load(), src.getSourceFileName(), 1));
+        return discover(src.load(), src.getSourceFileName(), 1);
     }
 
     public List<Require> discover(Reader src, String sourceFileName, int line) throws IOException {
-        return discover(factory.parse(src, sourceFileName, line));
+        return discover(new IRFactory(env).parse(src, sourceFileName, line));
     }
 
     public List<Require> discover(AstNode ast) throws IOException {

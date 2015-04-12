@@ -1,5 +1,6 @@
 package org.kohsuke.stapler.browserify;
 
+import java.io.IOException;
 import java.io.Reader;
 
 /**
@@ -20,7 +21,10 @@ public abstract class Source {
 
     protected Source(SourceLoader sourceLoader, ModuleName moduleName) {
         this.sourceLoader = sourceLoader;
+        if (sourceLoader==null)  throw new IllegalArgumentException();
+
         this.moduleName = moduleName;
+        if (moduleName==null)  throw new IllegalArgumentException();
     }
 
     public String getSourceFileName() {
@@ -30,7 +34,7 @@ public abstract class Source {
     /**
      * Obtains the JavaScript source.
      */
-    public abstract Reader load();
+    public abstract Reader load() throws IOException;
 
     /**
      * Just like {@link Class} equality, equality of {@link Source} is pair of name and {@link SourceLoader}.
