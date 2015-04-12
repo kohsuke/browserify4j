@@ -1,11 +1,16 @@
 <?xml version="1.0"?>     
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.kohsuke.stapler</groupId>
-  <artifactId>stapler-browserify</artifactId>
+  <parent>
+    <groupId>org.kohsuke</groupId>
+    <artifactId>pom</artifactId>
+    <version>14</version>
+  </parent>
+
+  <artifactId>browserify4j</artifactId>
   <version>1.0-SNAPSHOT</version>
-  <name>On-the-fly script concatanator</name>
-  <description>Combines scripts like Browserify</description>
+  <name>On-the-fly CommonJS module linker</name>
+  <description>Java port of Browserify</description>
 
   <dependencies>
     <dependency>
@@ -34,24 +39,10 @@
   </dependencies>
 
   <scm>
-    <connection>scm:git:git://github.com/stapler/browserify.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/stapler/browserify.git</developerConnection>
+    <connection>scm:git:git://github.com/kohsuke/browserify4j.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/kohsuke/browserify4j.git</developerConnection>
     <url>https://github.com/stapler/browserify</url>
   </scm>
-
-  <distributionManagement>
-    <repository>
-      <id>maven.jenkins-ci.org</id>
-      <url>http://maven.jenkins-ci.org:8081/content/repositories/releases/</url>
-    </repository>
-  </distributionManagement>
-
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
 
   <licenses>
     <license>
