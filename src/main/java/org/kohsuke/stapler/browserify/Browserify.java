@@ -123,10 +123,10 @@ public class Browserify {
         // entry points
         w.write("[");
         boolean firstEntryPoint = true;
-        for (ParsedSource ps : modules.values()) {
+        for (Source e : entryPoints) {
             if (firstEntryPoint)    firstEntryPoint = false;
             else                    w.write(",");
-            w.write(quote(ps.source.moduleName));
+            w.write(quote(e.moduleName));
         }
         w.write("]);");
     }
