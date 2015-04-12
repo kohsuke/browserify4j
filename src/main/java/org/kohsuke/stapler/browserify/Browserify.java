@@ -1,8 +1,8 @@
 package org.kohsuke.stapler.browserify;
 
-import org.apache.commons.io.IOUtils;
-
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.Reader;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -91,7 +91,7 @@ public class Browserify {
         w.write(";\nvar require=");
 
         // prelude
-        IOUtils.copy(Browserify.class.getResourceAsStream("prelude.js"), w, "UTF-8");
+        copy(new InputStreamReader(Browserify.class.getResourceAsStream("prelude.js"),"UTF-8"), w);
 
         // body
         w.write("({");
@@ -102,7 +102,7 @@ public class Browserify {
 
             w.write(quote(ps.source.moduleName));
             w.write(":[function(require,module,exports){\n");
-            IOUtils.copy(ps.source.load(),w);
+            copy(ps.source.load(), w);
             w.write("\n},{");
             {// map from relative reference to actual module name
                 boolean firstDependency = true;
@@ -129,6 +129,17 @@ public class Browserify {
             w.write(quote(e.moduleName));
         }
         w.write("]);");
+    }
+
+    private void copy(Reader r, Writer w) throws IOException {
+        try {
+            char[] buf = new char[1024];
+            int len;
+            while ((len=r.read(buf))>0)
+                w.write(buf,0,len);
+        } finally {
+            r.close();
+        }
     }
 
     private String quote(Object n) {

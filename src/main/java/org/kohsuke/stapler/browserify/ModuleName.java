@@ -1,7 +1,5 @@
 package org.kohsuke.stapler.browserify;
 
-import org.apache.commons.lang.StringUtils;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -57,7 +55,16 @@ public final class ModuleName {
             }
         }
 
-        return new ModuleName(StringUtils.join(tokens,"/"));
+        return new ModuleName(join(tokens, "/"));
+    }
+
+    private String join(List<String> tokens, String delim) {
+        StringBuilder buf = new StringBuilder();
+        for (String t : tokens) {
+            if (buf.length()>0)     buf.append(delim);
+            buf.append(t);
+        }
+        return buf.toString();
     }
 
     private Collection<String> tokenize(String path) {

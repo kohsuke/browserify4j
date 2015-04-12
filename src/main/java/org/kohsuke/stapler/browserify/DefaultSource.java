@@ -1,7 +1,5 @@
 package org.kohsuke.stapler.browserify;
 
-import com.google.common.base.Charsets;
-
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -21,7 +19,7 @@ public class DefaultSource extends Source {
 
     @Override
     public Reader load() throws IOException {
-        return new InputStreamReader(res.openStream(), Charsets.UTF_8);
+        return new InputStreamReader(res.openStream(), "UTF-8");
     }
 
     @Override

@@ -32,7 +32,11 @@ class RequireFinder {
     }
 
     public List<Require> discover(Reader src, String sourceFileName, int line) throws IOException {
-        return discover(new IRFactory(env).parse(src, sourceFileName, line));
+        try {
+            return discover(new IRFactory(env).parse(src, sourceFileName, line));
+        } finally {
+            src.close();
+        }
     }
 
     public List<Require> discover(AstNode ast) throws IOException {
