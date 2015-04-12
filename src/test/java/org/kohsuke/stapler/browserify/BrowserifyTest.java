@@ -32,7 +32,7 @@ public class BrowserifyTest extends Assert {
         browserify.writeTo(sw);
         sw.write("\n"+main);
 
-        FileWriter fw = new FileWriter("/tmp/test.js");
+        FileWriter fw = new FileWriter("/tmp/requires.js");
         fw.write(sw.toString());
         fw.close();
 

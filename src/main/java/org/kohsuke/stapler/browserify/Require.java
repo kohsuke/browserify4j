@@ -21,4 +21,9 @@ final class Require {
         this.call = call;
         this.target = target;
     }
+
+    @Override
+    public String toString() {
+        return target;
+    }
 }
